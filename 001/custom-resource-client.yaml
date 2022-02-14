@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Custom Resource Client Example - Use LambdaCustomResourceEmptyBucket
+
+Resources:
+
+  BucketResource:
+    Type: AWS::S3::Bucket
+
+  LambdaCustomResourceEmptyBucketResource:
+    Type: Custom::EmptyBucket
+    Properties:
+      ServiceToken: !ImportValue LambdaCustomResourceEmptyBucket
+      BucketName: !Ref BucketResource
